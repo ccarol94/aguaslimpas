@@ -1,0 +1,19 @@
+function captureLocation() {
+    // Verifica se a página está em HTTPS (obrigatório para geolocalização no Chrome)
+    if (window.location.protocol !== 'https:') {
+        alert("Para melhor funcionamento, acesse este site em HTTPS ou use o modo anônimo.");
+        return;
+    }
+
+    // Geolocalização com alta precisão (código que já tínhamos ajustado)
+    if (navigator.geolocation) {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        };
+        navigator.geolocation.getCurrentPosition(sendDataToSheet, showError, options);
+    } else {
+        alert("Geolocalização não é suportada por este navegador.");
+    }
+}
